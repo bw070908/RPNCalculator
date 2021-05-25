@@ -15,6 +15,5 @@ public final class SwapCommand extends OperationCommand {
         Number input2 = calculator.pop();
         calculator.push(input1);
         calculator.push(input2);
-        calculator.commit();
     }
 }

@@ -13,6 +13,5 @@ public class ClearCommand extends OperationCommand {
         while(calculator.getStackDepth() > 0) {
             calculator.pop();
         }
-        calculator.commit();
     }
 }

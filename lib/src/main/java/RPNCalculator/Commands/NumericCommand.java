@@ -3,7 +3,7 @@ package RPNCalculator.Commands;
 import RPNCalculator.Calculator.Calculator;
 import RPNCalculator.Calculator.Number;
 
-public final class NumericCommand implements Command {
+public final class NumericCommand extends BaseCommand {
 
     private Number value;
 
@@ -12,8 +12,7 @@ public final class NumericCommand implements Command {
     }
 
     @Override
-    public void execute(Calculator calculator) {
+    public void executeCommand(Calculator calculator) {
         calculator.push(this.value);
-        calculator.commit();
     }
 }

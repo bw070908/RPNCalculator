@@ -15,6 +15,5 @@ public abstract class UnaryOperationCommand extends OperationCommand {
     @Override
     void executeOperation(Calculator calculator) {
         calculator.push(output(calculator.pop()));
-        calculator.commit();
     }
 }

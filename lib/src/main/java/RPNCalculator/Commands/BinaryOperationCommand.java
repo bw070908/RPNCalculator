@@ -17,6 +17,5 @@ public abstract class BinaryOperationCommand extends OperationCommand {
         Number input2 = calculator.pop();
         Number input1 = calculator.pop();
         calculator.push(output(input1, input2));
-        calculator.commit();
     }
 }
