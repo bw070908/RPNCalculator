@@ -2,7 +2,7 @@ package RPNCalculator.Commands;
 
 import RPNCalculator.Calculator.Number;
 
-public class SubtractionCommand extends BinaryOperationCommand {
+public final class SubtractionCommand extends BinaryOperationCommand {
     @Override
     Number output(Number input1, Number input2) {
         return new Number(

@@ -2,7 +2,7 @@ package RPNCalculator.Commands;
 
 import RPNCalculator.Calculator.Number;
 
-public class SquareRootCommand extends UnaryOperationCommand {
+public final class SquareRootCommand extends UnaryOperationCommand {
     @Override
     Number output(Number input) {
         return new Number(

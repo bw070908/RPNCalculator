@@ -2,7 +2,7 @@ package RPNCalculator.Commands;
 
 import RPNCalculator.Calculator.Calculator;
 
-public class UndoCommand extends OperationCommand {
+public final class UndoCommand extends OperationCommand {
     @Override
     int requiredNumberOfParameters() {
         return 0;
