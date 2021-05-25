@@ -2,6 +2,7 @@ package RPNCalculator;
 
 import RPNCalculator.Calculator.Number;
 import RPNCalculator.Commands.*;
+import RPNCalculator.Exceptions.InvalidInputException;
 
 import java.util.Map;
 
@@ -23,7 +24,16 @@ public class CommandParser {
         if (STRING_TO_OPERATION_MAP.containsKey(input)) {
             return STRING_TO_OPERATION_MAP.get(input);
         }
-        Number inputNumber = new Number(input);
-        return new NumericCommand(inputNumber);
+        return parseNumeric(input);
+    }
+
+    private NumericCommand parseNumeric(String input) {
+        Number number;
+        try {
+            number = new Number(input);
+        } catch (NumberFormatException e) {
+            throw new InvalidInputException(input, "expression is not a number nor an operation");
+        }
+        return new NumericCommand(number);
     }
 }

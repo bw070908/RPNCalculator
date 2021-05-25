@@ -1,6 +1,7 @@
 package RPNCalculator.Calculator;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Calculator {
 
@@ -30,9 +31,9 @@ public class Calculator {
     public void commit() {
         if (!currentInstruction.isEmpty()) {
             doneInstructions.add(currentInstruction);
+            undoneInstructions.clear();
         }
         currentInstruction = new Instruction();
-        undoneInstructions.clear();
     }
 
     public void cancel() {
@@ -63,11 +64,10 @@ public class Calculator {
     }
 
     public String printStack() {
-        List<String> printedNumbers = new ArrayList<String>();
-        for(Number n : numbers) {
-           printedNumbers.add(n.getValue().stripTrailingZeros().toPlainString());
-        }
-        return String.join(" ", printedNumbers);
+        return String.join(
+                " ",
+                numbers.stream().map(n -> n.toPlainString()).collect(Collectors.toList())
+        );
     }
 
     private void undoInstruction(Instruction instruction) {

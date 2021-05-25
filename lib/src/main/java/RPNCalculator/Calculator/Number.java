@@ -8,6 +8,7 @@ public class Number {
 
     public static final int DEFAULT_PRECISION = 15;
     public static final MathContext DEFAULT_MC = new MathContext(DEFAULT_PRECISION);
+    public static final int DISPLAY_PRECISION = 10;
 
     private BigDecimal value;
 
@@ -23,5 +24,11 @@ public class Number {
 
     public BigDecimal getValue() {
         return value;
+    }
+
+    public String toPlainString() {
+        return value.setScale(DISPLAY_PRECISION, RoundingMode.HALF_UP)
+                .stripTrailingZeros()
+                .toPlainString();
     }
 }
