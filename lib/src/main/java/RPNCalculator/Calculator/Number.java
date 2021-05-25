@@ -6,20 +6,19 @@ import java.math.RoundingMode;
 
 public class Number {
 
-    public static final int DEFAULT_PRECISION = 15;
-    public static final MathContext DEFAULT_MC = new MathContext(DEFAULT_PRECISION);
-    public static final int DISPLAY_PRECISION = 10;
+    public static final int DEFAULT_SCALE = 15;
+    public static final int DISPLAY_SCALE = 10;
+    public static final RoundingMode DEFAULT_ROUNDING_MODE = RoundingMode.HALF_UP;
+    public static final MathContext DEFAULT_MC = MathContext.UNLIMITED;
 
     private BigDecimal value;
 
     public Number(String n) {
-        value = new BigDecimal(n);
-        value.setScale(DEFAULT_PRECISION);
+        value = new BigDecimal(n, DEFAULT_MC).setScale(DEFAULT_SCALE, DEFAULT_ROUNDING_MODE);
     }
 
     public Number(BigDecimal bd) {
-        value = bd;
-        bd.setScale(DEFAULT_PRECISION, RoundingMode.HALF_UP);
+        value = bd.setScale(DEFAULT_SCALE, DEFAULT_ROUNDING_MODE);
     }
 
     public BigDecimal getValue() {
@@ -27,7 +26,7 @@ public class Number {
     }
 
     public String toPlainString() {
-        return value.setScale(DISPLAY_PRECISION, RoundingMode.HALF_UP)
+        return value.setScale(DISPLAY_SCALE, DEFAULT_ROUNDING_MODE)
                 .stripTrailingZeros()
                 .toPlainString();
     }

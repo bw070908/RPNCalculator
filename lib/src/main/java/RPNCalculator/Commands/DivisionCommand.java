@@ -3,7 +3,6 @@ package RPNCalculator.Commands;
 import RPNCalculator.Calculator.Number;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 public final class DivisionCommand extends BinaryOperationCommand {
     @Override
@@ -14,8 +13,8 @@ public final class DivisionCommand extends BinaryOperationCommand {
         return new Number(
                 input1.getValue().divide(
                         input2.getValue(),
-                        Number.DEFAULT_PRECISION,
-                        RoundingMode.HALF_UP
+                        Number.DEFAULT_SCALE,
+                        Number.DEFAULT_ROUNDING_MODE
                 )
         );
     }

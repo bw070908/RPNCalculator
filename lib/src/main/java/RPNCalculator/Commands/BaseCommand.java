@@ -14,6 +14,9 @@ public abstract class BaseCommand implements Command {
         } catch (CommandExecutionException e) {
             calculator.cancel();
             throw e;
+        } catch (Exception e) {
+            calculator.cancel();
+            throw new CommandExecutionException(e.getMessage(), e);
         }
     }
 }

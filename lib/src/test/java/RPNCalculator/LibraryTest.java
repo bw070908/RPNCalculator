@@ -10,9 +10,7 @@ public class LibraryTest {
     @Test
     public void testSomeLibraryMethod() {
         RPNCalculator cut = new RPNCalculator();
-        cut.process("1 +");
-        System.out.println("Stack: " + cut.printStack());
-        cut.process("1 2 3 4 5 clear undo 4 5 6 undo undo 7 8 9");
+        cut.process("333 0 /");
         System.out.println("Stack: " + cut.printStack());
     }
 }
