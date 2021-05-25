@@ -10,7 +10,7 @@ public class ClearCommand extends OperationCommand {
 
     @Override
     void executeOperation(Calculator calculator) {
-        while(calculator.getStackDepth() > 0) {
+        while(calculator.size() > 0) {
             calculator.pop();
         }
     }

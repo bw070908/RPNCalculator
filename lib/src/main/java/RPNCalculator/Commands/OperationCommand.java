@@ -10,7 +10,7 @@ public abstract class OperationCommand extends BaseCommand {
 
     @Override
     public void executeCommand(Calculator calculator) {
-        if (requiredNumberOfParameters() >  calculator.getStackDepth()) {
+        if (requiredNumberOfParameters() >  calculator.size()) {
             throw new CommandExecutionException("insufficient parameters");
         }
         executeOperation(calculator);

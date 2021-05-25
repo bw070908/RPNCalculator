@@ -2,6 +2,7 @@ package RPNCalculator;
 
 import RPNCalculator.Calculator.Calculator;
 import RPNCalculator.Commands.Command;
+import com.google.common.base.Splitter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +17,7 @@ public class RPNCalculator {
     }
 
     public void process(String input) {
-        String[] inputs = input.split(" ");
+        List<String> inputs = Splitter.on(" ").omitEmptyStrings().splitToList(input);
         List<Command> commands = new ArrayList<Command>();
         for (String in : inputs) {
             commands.add(parser.parse(in));

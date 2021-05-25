@@ -58,7 +58,7 @@ public class Calculator {
         doneInstructions.push(instruction);
     }
 
-    public int getStackDepth() {
+    public int size() {
         return numbers.size();
     }
 

@@ -6,7 +6,7 @@ import java.math.RoundingMode;
 
 public class Number {
 
-    private static final int DEFAULT_PRECISION = 15;
+    public static final int DEFAULT_PRECISION = 15;
     public static final MathContext DEFAULT_MC = new MathContext(DEFAULT_PRECISION);
 
     private BigDecimal value;
