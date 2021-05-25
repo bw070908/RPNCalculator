@@ -32,7 +32,7 @@ public class CommandParser {
         try {
             number = new Number(input);
         } catch (NumberFormatException e) {
-            throw new InvalidInputException(input, "expression is not a number nor an operation");
+            throw new InvalidInputException("expression is not a number nor an operation", input);
         }
         return new NumericCommand(number);
     }
