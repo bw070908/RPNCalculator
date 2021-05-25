@@ -1,9 +1,6 @@
 package RPNCalculator.Calculator;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 public class Calculator {
 
@@ -44,14 +41,7 @@ public class Calculator {
             return;
         }
         Instruction instruction = doneInstructions.pop();
-        // Pop all the originally pushed numbers
-        for (int i = 0; i < instruction.getPushedNumbers().size(); i++) {
-            numbers.pop();
-        }
-        // Push all the originally popped numbers in reverse order
-        List<Number> poppedNumbers = new ArrayList<Number>(instruction.getPoppedNumbers());
-        Collections.reverse(poppedNumbers);
-        numbers.addAll(poppedNumbers);
+        undoInstruction(instruction);
         undoneInstructions.push(instruction);
     }
 
@@ -60,13 +50,16 @@ public class Calculator {
             return;
         }
         Instruction instruction = undoneInstructions.pop();
-        // Pop the originally popped numbers again
-        for (int i = 0; i < instruction.getPoppedNumbers().size(); i++) {
-            numbers.pop();
+        redoInstruction(instruction);
+        doneInstructions.push(instruction);
+    }
+
+    public void cancel() {
+        if (currentInstruction == null) {
+            return;
         }
-        // Push all the originally pushed numbers again
-        numbers.addAll(instruction.getPushedNumbers());
-        undoneInstructions.push(instruction);
+        undoInstruction(currentInstruction);
+        currentInstruction = null;
     }
 
     public int getStackDepth() {
@@ -79,5 +72,29 @@ public class Calculator {
            printedNumbers.add(n.getValue().stripTrailingZeros().toPlainString());
         }
         return String.join(" ", printedNumbers);
+    }
+
+    private void undoInstruction(Instruction instruction) {
+        Iterator<Action> actions = instruction.getActionsReversed();
+        while (actions.hasNext()) {
+            Action action = actions.next();
+            if (action.getType() == Action.ActionType.POP) {
+                numbers.push(action.getValue());
+            } else {
+                numbers.pop();
+            }
+        }
+    }
+
+    private void redoInstruction(Instruction instruction) {
+        Iterator<Action> actions = instruction.getActions();
+        while (actions.hasNext()) {
+            Action action = actions.next();
+            if (action.getType() == Action.ActionType.POP) {
+                numbers.pop();
+            } else {
+                numbers.push(action.getValue());
+            }
+        }
     }
 }

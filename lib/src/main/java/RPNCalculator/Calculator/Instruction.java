@@ -1,29 +1,29 @@
 package RPNCalculator.Calculator;
 
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.Iterator;
 
 public class Instruction {
-    private Stack<Number> poppedNumbers;
-    private Stack<Number> pushedNumbers;
+    private Deque<Action> actions;
 
     public Instruction() {
-        poppedNumbers = new Stack<Number>();
-        pushedNumbers = new Stack<Number>();
-    }
-
-    public Stack<Number> getPoppedNumbers() {
-        return this.poppedNumbers;
-    }
-
-    public Stack<Number> getPushedNumbers() {
-        return this.pushedNumbers;
+        this.actions = new ArrayDeque<Action>();
     }
 
     public void recordPop(Number n) {
-        poppedNumbers.push(n);
+        actions.add(new Action(Action.ActionType.POP, n));
     }
 
     public void recordPush(Number n) {
-        pushedNumbers.push(n);
+        actions.add(new Action(Action.ActionType.PUSH, n));
+    }
+
+    public Iterator<Action> getActions() {
+        return actions.iterator();
+    }
+
+    public Iterator<Action> getActionsReversed() {
+        return actions.descendingIterator();
     }
 }
