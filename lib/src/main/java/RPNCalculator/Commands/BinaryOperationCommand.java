@@ -14,10 +14,9 @@ public abstract class BinaryOperationCommand extends OperationCommand {
 
     @Override
     void executeOperation(Calculator calculator) {
-        calculator.beginInstruction();
-        Number input2 = calculator.popNumber();
-        Number input1 = calculator.popNumber();
-        calculator.pushNumber(output(input1, input2));
-        calculator.endInstruction();
+        Number input2 = calculator.pop();
+        Number input1 = calculator.pop();
+        calculator.push(output(input1, input2));
+        calculator.commit();
     }
 }

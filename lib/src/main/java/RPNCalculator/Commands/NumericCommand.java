@@ -13,8 +13,7 @@ public final class NumericCommand implements Command {
 
     @Override
     public void execute(Calculator calculator) {
-        calculator.beginInstruction();
-        calculator.pushNumber(this.value);
-        calculator.endInstruction();
+        calculator.push(this.value);
+        calculator.commit();
     }
 }

@@ -13,27 +13,31 @@ public class Calculator {
         numbers = new Stack<Number>();
         doneInstructions = new Stack<Instruction>();
         undoneInstructions = new Stack<Instruction>();
+        currentInstruction = new Instruction();
     }
 
-    public void beginInstruction() {
-        this.currentInstruction = new Instruction();
-    }
-
-    public Number popNumber() {
+    public Number pop() {
         Number popped = numbers.pop();
         currentInstruction.recordPop(popped);
         return popped;
     }
 
-    public void pushNumber (Number n) {
+    public void push(Number n) {
         numbers.push(n);
         currentInstruction.recordPush(n);
     }
 
-    public void endInstruction() {
-        doneInstructions.add(currentInstruction);
-        currentInstruction = null;
+    public void commit() {
+        if (!currentInstruction.isEmpty()) {
+            doneInstructions.add(currentInstruction);
+        }
+        currentInstruction = new Instruction();
         undoneInstructions.clear();
+    }
+
+    public void cancel() {
+        undoInstruction(currentInstruction);
+        currentInstruction = new Instruction();
     }
 
     public void undo() {
@@ -52,14 +56,6 @@ public class Calculator {
         Instruction instruction = undoneInstructions.pop();
         redoInstruction(instruction);
         doneInstructions.push(instruction);
-    }
-
-    public void cancel() {
-        if (currentInstruction == null) {
-            return;
-        }
-        undoInstruction(currentInstruction);
-        currentInstruction = null;
     }
 
     public int getStackDepth() {

@@ -26,4 +26,8 @@ public class Instruction {
     public Iterator<Action> getActionsReversed() {
         return actions.descendingIterator();
     }
+
+    public boolean isEmpty() {
+        return actions.isEmpty();
+    }
 }

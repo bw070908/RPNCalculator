@@ -11,11 +11,10 @@ public final class SwapCommand extends OperationCommand {
 
     @Override
     void executeOperation(Calculator calculator) {
-        calculator.beginInstruction();
-        Number input1 = calculator.popNumber();
-        Number input2 = calculator.popNumber();
-        calculator.pushNumber(input1);
-        calculator.pushNumber(input2);
-        calculator.endInstruction();
+        Number input1 = calculator.pop();
+        Number input2 = calculator.pop();
+        calculator.push(input1);
+        calculator.push(input2);
+        calculator.commit();
     }
 }
