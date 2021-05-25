@@ -27,7 +27,7 @@ public class RPNCommandLine {
 
     private static void printOperationException(OperationException e) {
         String displayMessage = String.format(
-                "operation %s (position: %d): %s",
+                "operator %s (position: %d): %s",
                 e.getOperationSymbol(),
                 e.getPosition(),
                 e.getMessage()

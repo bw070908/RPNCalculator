@@ -8,8 +8,9 @@ public class Number {
 
     public static final int DEFAULT_SCALE = 15;
     public static final int DISPLAY_SCALE = 10;
-    public static final RoundingMode DEFAULT_ROUNDING_MODE = RoundingMode.HALF_UP;
-    public static final MathContext DEFAULT_MC = MathContext.UNLIMITED;
+    public static final RoundingMode DEFAULT_ROUNDING_MODE = RoundingMode.DOWN;
+    public static final MathContext DEFAULT_MC =
+            new MathContext(MathContext.DECIMAL128.getPrecision(), DEFAULT_ROUNDING_MODE);
 
     private BigDecimal value;
 
