@@ -1,6 +1,6 @@
 package RPNCalculator;
 
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 
 import java.lang.reflect.Type;
 
@@ -13,15 +13,15 @@ public class CalculatorTestRunner {
         } catch (Exception e) {
             caught = e.getClass();
         }
-        Assert.assertEquals(
-                test.getDescription(),
+        Assertions.assertEquals(
                 test.getExpectedStack(),
-                calculator.printStack()
+                calculator.printStack(),
+                test.getDescription()
         );
-        Assert.assertEquals(
-                test.getDescription(),
+        Assertions.assertEquals(
                 test.getExpectedException(),
-                caught
+                caught,
+                test.getDescription()
         );
     }
 }

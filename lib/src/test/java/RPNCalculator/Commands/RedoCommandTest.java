@@ -2,8 +2,8 @@ package RPNCalculator.Commands;
 
 import RPNCalculator.Calculator.Calculator;
 import RPNCalculator.Calculator.Number;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class RedoCommandTest {
 
@@ -22,7 +22,7 @@ public class RedoCommandTest {
         calculator.commit();
         undoCommand.execute(calculator);
         cut.execute(calculator);
-        Assert.assertEquals("1 2 3", calculator.printStack());
+        Assertions.assertEquals("1 2 3", calculator.printStack());
     }
 
     @Test
@@ -32,7 +32,7 @@ public class RedoCommandTest {
         calculator.push(new Number("2"));
         calculator.commit();
         cut.execute(calculator);
-        Assert.assertEquals("1 2", calculator.printStack());
+        Assertions.assertEquals("1 2", calculator.printStack());
     }
 
     @Test
@@ -49,7 +49,7 @@ public class RedoCommandTest {
         undoCommand.execute(calculator);
         cut.execute(calculator);
         cut.execute(calculator);
-        Assert.assertEquals("1 2 3", calculator.printStack());
+        Assertions.assertEquals("1 2 3", calculator.printStack());
     }
 
     @Test
@@ -68,7 +68,7 @@ public class RedoCommandTest {
         calculator.pop();
         calculator.commit();
         cut.execute(calculator);
-        Assert.assertEquals("1 2 5", calculator.printStack());
+        Assertions.assertEquals("1 2 5", calculator.printStack());
     }
 
 }

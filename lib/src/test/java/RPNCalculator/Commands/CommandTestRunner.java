@@ -3,7 +3,7 @@ package RPNCalculator.Commands;
 import RPNCalculator.Calculator.Calculator;
 import RPNCalculator.Calculator.Number;
 import com.google.common.base.Splitter;
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 
 import java.lang.reflect.Type;
 import java.util.List;
@@ -24,15 +24,15 @@ public class CommandTestRunner {
         } catch (Exception e) {
             caught = e.getClass();
         }
-        Assert.assertEquals(
-                test.getDescription(),
+        Assertions.assertEquals(
                 test.getExpectedStack(),
-                calculator.printStack()
+                calculator.printStack(),
+                test.getDescription()
         );
-        Assert.assertEquals(
-                test.getDescription(),
+        Assertions.assertEquals(
                 test.getExpectedException(),
-                caught
+                caught,
+                test.getDescription()
         );
     }
 }
