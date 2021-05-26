@@ -1,0 +1,64 @@
+I. Usage
+
+To run application, go to ./app directory:
+1. gradle build
+2. java -jar build/libs/app.jar
+
+For this simple command line app, I disabled the gradle run tasks in favor of running from JAR.
+Gradle tasks log aggressively to standard output, and we don't want that interfering with our calculator :D
+
+
+II. Calculator specifications
+
+Listed here are specifications for the calculator that were not explicitly specified in the instructions.
+
+1. Rounding: The instruction examples say that sqrt(2) should be displayed as 1.4142135623 and not 1.4142135624.
+Therefore it is assumed that all rounding should round downwards towards zero.
+
+2. Undo/redo: Instructions did not specify behavior when undo/redo is called when there are no more operations to undo.
+Therefore this calculator accepts these operations and simply takes no actions.
+This is much like how nothing happens (no errors) when you click cmd-z in a text editor.
+
+3. Invalid inputs: Users may input strings that cannot be parsed into operations nor numbers.
+In this case, the calculator will return an error before any of the inputs are processed.
+Unlike operator errors that can only be detected at "runtime" when the operation is evaluated,
+the calculator can and does pre-filter for input errors.
+
+4. Operator errors: The instructions specify behavior for one type operator error (insufficient parameters).
+The calculator follows the same behavior for all operator errors (divide by 0, sqrt of negative number, etc).
+Once again these errors can only be detected at "runtime", when an operator is applied to the calculator's stack.
+
+5. Overflow/underflow: The calculator leverage precise usage of the BigDecimal class to ensure accurate precision.
+That said, BigDecimal does not provide explicit protection against overflow values;
+this is because BigDecimal will only overflow in cases where memory is exceeded.
+Similarly, the calculator does not explicitly limit user freedom to guard against overflow,
+as it would take an unreasonably large input to cause this scenario.
+For underflow, as the instructions specified, the calculator rounds down to only preserve 15 digits after the decimal.
+Smaller values, either inputted by users or outputted by operations, are all evaluated as zero.
+
+
+III. Overview of design choices
+
+Here is a quick documentation a few design choices made in the calculator's implementation:
+
+1. Modules: Split between app and lib.
+The lib contains the core RPNCalculator class that can plug into multiple types of applications.
+This makes the design extensible for further use cases beyond command line apps.
+The app contains a simple command line app to interface with the calculator.
+
+2. Dependency injection: None.
+I want to acknowledge that when writing Service code, I typically do enforce dependency injection in production.
+In this case, I treated the RPNCalculator lib more as a shareable library, and thus did not add a DI framework.
+Please let me know if this is a concern. I know certain interviewers are adamant to see candidates prove they
+have a working knowledge of DI frameworks and/or inversion of control principles.
+
+3. Testing
+Most good production grade testing code are either parametrized (data driven, test-harnesses, etc) or behavioral.
+For this exercise I focused on parameterized tests for the individual Commands and the calculator as a whole,
+which allowed fast testing across many types of inputs.
+
+4. Coding style
+A quick note here that I explicitly negated comments for the code package.
+I've worked on teams that ranged from strict comments across all classes (like Redfin),
+to teams that believed clear code diminishes the need for comments (Google, Amazon).
+Either way, the aim for this project is for the code to be self explanatory :)

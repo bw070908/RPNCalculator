@@ -3,6 +3,11 @@ plugins {
     id "application"
 }
 
+compileJava {
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
+}
+
 repositories {
     mavenCentral()
 }
@@ -17,10 +22,14 @@ test {
     useJUnitPlatform()
 }
 
-application {
-    mainClassName = 'RPNCommandLine'
-}
-
-run{
-    standardInput = System.in
+jar {
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+    manifest {
+        attributes(
+                'Main-Class': 'RPNCommandLine'
+        )
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
 }
