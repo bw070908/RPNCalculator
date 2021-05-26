@@ -25,6 +25,24 @@ public class AdditionCommandTest {
                     "1 2 3",
                     "1 5",
                     null
+            ),
+            new CommandTestCase(
+                    "Addition should handle cases where input is negative",
+                    "5 -3",
+                    "2",
+                    null
+            ),
+            new CommandTestCase(
+                    "Addition should handle cases where output is negative",
+                    "-5 3",
+                    "-2",
+                    null
+            ),
+            new CommandTestCase(
+                    "Subtraction should handle inputs with different precisions",
+                    "100.23 45.00678",
+                    "145.23678",
+                    null
             )
     );
 
@@ -41,4 +59,5 @@ public class AdditionCommandTest {
     public static List<CommandTestCase> provideTestCases() {
         return TESTS;
     }
+
 }

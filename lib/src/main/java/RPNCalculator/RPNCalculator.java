@@ -4,10 +4,10 @@ import RPNCalculator.Calculator.Calculator;
 import RPNCalculator.Commands.Command;
 import RPNCalculator.Commands.CommandExecutionException;
 import RPNCalculator.Exceptions.OperationException;
-import com.google.common.base.Splitter;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import static java.util.stream.Collectors.toList;
 
 public class RPNCalculator {
     private Calculator calculator;
@@ -23,10 +23,7 @@ public class RPNCalculator {
     public void process(String input) {
         List<String> inputs = inputParser.parseInput(input);
         List<Integer> positions = inputParser.getPositions(input);
-        List<Command> commands = new ArrayList<Command>();
-        for (String in : inputs) {
-            commands.add(commandParser.parse(in));
-        }
+        List<Command> commands = inputs.stream().map(s -> commandParser.parse(s)).collect(toList());
         for (int i = 0; i < commands.size(); i ++) {
             execute(commands.get(i), inputs.get(i), positions.get(i));
         }

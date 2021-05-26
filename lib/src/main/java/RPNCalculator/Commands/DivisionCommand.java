@@ -11,8 +11,8 @@ public final class DivisionCommand extends BinaryOperationCommand {
             throw new CommandExecutionException("cannot divide by 0");
         }
         return new Number(
-                input1.getValue().divide(
-                        input2.getValue(),
+                input1.getValue().stripTrailingZeros().divide(
+                        input2.getValue().stripTrailingZeros(),
                         Number.DEFAULT_SCALE,
                         Number.DEFAULT_ROUNDING_MODE
                 )
