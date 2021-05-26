@@ -23,6 +23,7 @@ test {
 }
 
 jar {
+    dependsOn(':lib:build')
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
     manifest {
         attributes(
