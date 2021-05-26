@@ -61,7 +61,6 @@ For this exercise I focused on parameterized tests for the individual Commands a
 which allowed fast testing across many types of inputs.
 
 4. Coding style
-A quick note here that I explicitly negated comments for the code package.
 I've worked on teams that ranged from strict comments across all classes (like Redfin),
 to teams that believed clear code diminishes the need for comments (Google, Amazon).
-Either way, the aim for this project is for the code to be self explanatory :)
+Not sure what your preference is, so I took the middle ground (some comments, but not strict Java doc).
