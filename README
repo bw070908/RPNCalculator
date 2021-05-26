@@ -7,6 +7,9 @@ To run application, go to ./app directory:
 For this simple command line app, I disabled the gradle run tasks in favor of running from JAR.
 Gradle tasks log aggressively to standard output, and we don't want that interfering with our calculator :D
 
+To build and run tests for core library, go to ./lib directory:
+1. gradle build
+
 
 II. Calculator specifications
 
