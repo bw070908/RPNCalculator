@@ -25,13 +25,13 @@ public class CommandTestRunner {
             caught = e.getClass();
         }
         Assertions.assertEquals(
-                test.getExpectedStack(),
-                calculator.printStack(),
+                test.getExpectedException(),
+                caught,
                 test.getDescription()
         );
         Assertions.assertEquals(
-                test.getExpectedException(),
-                caught,
+                test.getExpectedStack(),
+                calculator.printStack(),
                 test.getDescription()
         );
     }

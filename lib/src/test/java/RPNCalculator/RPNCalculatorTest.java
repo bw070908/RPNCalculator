@@ -68,6 +68,66 @@ public class RPNCalculatorTest {
                     List.of("1 2 3 * 5 + * * 6 5"),
                     "11",
                     OperationException.class
+            ),
+            new CalculatorTestCase(
+                    "Calculator can handle wide range of numeric inputs",
+                    List.of("2 2.5 2.500 .54 0.54 0.5400 00.5400 -2 -2.5 -.54 0 0.0 0.00 .00 -0 -0.0"),
+                    "2 2.5 2.5 0.54 0.54 0.54 0.54 -2 -2.5 -0.54 0 0 0 0 0 0",
+                    null
+            ),
+            new CalculatorTestCase(
+                    "Calculator can handle numeric inputs with high precision and round when necessary",
+                    List.of("0.01234567 0.0123456789012 0.01234567890123456789"),
+                    "0.01234567 0.0123456789 0.0123456789",
+                    null
+            ),
+            new CalculatorTestCase(
+                    "Calculator truncates trailing zeros after the decimal for display",
+                    List.of("1000 1000.1 1000.1000000"),
+                    "1000 1000.1 1000.1",
+                    null
+            ),
+            new CalculatorTestCase(
+                    "Calculator can store numbers to a higher precision than displayed",
+                    List.of("0.100000000011 0.100000000011 1000 *"),
+                    "0.1 100.000000011",
+                    null
+            ),
+            new CalculatorTestCase(
+                    "Calculator redo can restore undone commands",
+                    List.of("1 2 3 4", "* * *", "undo undo undo", "redo redo"),
+                    "1 24",
+                    null
+            ),
+            new CalculatorTestCase(
+                    "Calculator swap switches the top 2 numbers",
+                    List.of("1 2 3 4", "swap swap swap"),
+                    "1 2 4 3",
+                    null
+            ),
+            new CalculatorTestCase(
+                    "Calculator throws OperationException if divide by 0",
+                    List.of("1 2 3 4", "0 * /"),
+                    "1 2 3 0",
+                    OperationException.class
+            ),
+            new CalculatorTestCase(
+                    "Calculator throws OperationException if sqrt of negative number",
+                    List.of("1 2 3 81", "-1 * sqrt"),
+                    "1 2 3 -81",
+                    OperationException.class
+            ),
+            new CalculatorTestCase(
+                    "Calculator clear emties the stack",
+                    List.of("1 2 3 81", "-1 *", "clear"),
+                    "",
+                    null
+            ),
+            new CalculatorTestCase(
+                    "How about a fun test with everything in it :)",
+                    List.of("1 2 3 4 5", "+ - * /", " -1 * sqrt 123.45 *", "undo undo", "redo", "swap", "clear"),
+                    "",
+                    null
             )
     );
 
