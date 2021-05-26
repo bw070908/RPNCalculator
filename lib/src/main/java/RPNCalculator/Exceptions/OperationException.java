@@ -1,5 +1,8 @@
 package RPNCalculator.Exceptions;
 
+/**
+ * External facing exception for when exception is encountered when applying an operation.
+ */
 public class OperationException extends RuntimeException {
     private String operationSymbol;
     private int position;

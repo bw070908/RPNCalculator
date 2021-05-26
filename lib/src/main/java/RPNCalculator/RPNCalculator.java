@@ -9,6 +9,10 @@ import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
+/**
+ * RPNCalculator is the class from the RPNCalculator library exposed to users.
+ * Users can input commands to the calculator and examine the state of the stack within the calculator.
+ */
 public class RPNCalculator {
     private Calculator calculator;
     private InputParser inputParser;
@@ -20,6 +24,10 @@ public class RPNCalculator {
         commandParser = new CommandParser();
     }
 
+    /**
+     * Method process will have RPNCaclulator process an user inputted string.
+     * @param input String representing line with user inputs delimited by whitespace.
+     */
     public void process(String input) {
         List<String> inputs = inputParser.parseInput(input);
         List<Integer> positions = inputParser.getPositions(input);
@@ -29,6 +37,10 @@ public class RPNCalculator {
         }
     }
 
+    /**
+     * Return plain string representing state of the calculator's stack.
+     * @return Plain string representation of calculator's stack.
+     */
     public String printStack() {
         return calculator.printStack();
     }

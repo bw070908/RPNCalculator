@@ -6,7 +6,10 @@ import RPNCalculator.Exceptions.InvalidInputException;
 
 import java.util.Map;
 
-public class CommandParser {
+/**
+ * CommandParser contains methods to parse individual input strings into calculator commands.
+ */
+class CommandParser {
 
     private final Map<String, Command> STRING_TO_OPERATION_MAP = Map.of(
             "+", new AdditionCommand(),
@@ -20,6 +23,11 @@ public class CommandParser {
             "redo", new RedoCommand()
     );
 
+    /**
+     * Parse input string into calculator command.
+     * @param input String with single input token.
+     * @return Calculator command, either Operation or Numeric.
+     */
     public Command parse(String input) {
         if (STRING_TO_OPERATION_MAP.containsKey(input)) {
             return STRING_TO_OPERATION_MAP.get(input);

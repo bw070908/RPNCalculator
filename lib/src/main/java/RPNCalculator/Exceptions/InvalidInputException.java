@@ -1,5 +1,8 @@
 package RPNCalculator.Exceptions;
 
+/**
+ * External facing exception for cases where user input is invalid.
+ */
 public class InvalidInputException extends RuntimeException {
     private String offendingInput;
 
