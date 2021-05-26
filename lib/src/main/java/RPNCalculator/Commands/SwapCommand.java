@@ -3,6 +3,9 @@ package RPNCalculator.Commands;
 import RPNCalculator.Calculator.Calculator;
 import RPNCalculator.Calculator.Number;
 
+/**
+ * Command for swap operation.
+ */
 public final class SwapCommand extends OperationCommand {
     @Override
     int requiredNumberOfParameters() {

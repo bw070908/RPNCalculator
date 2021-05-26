@@ -4,6 +4,9 @@ import RPNCalculator.Calculator.Number;
 
 import java.math.BigDecimal;
 
+/**
+ * Command for square root operation.
+ */
 public final class SquareRootCommand extends UnaryOperationCommand {
     @Override
     Number output(Number input) {

@@ -2,6 +2,9 @@ package RPNCalculator.Commands;
 
 import RPNCalculator.Calculator.Calculator;
 
+/**
+ * Command for clear operation.
+ */
 public final class ClearCommand extends OperationCommand {
     @Override
     int requiredNumberOfParameters() {

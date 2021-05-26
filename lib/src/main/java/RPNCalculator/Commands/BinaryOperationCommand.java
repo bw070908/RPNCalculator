@@ -3,6 +3,10 @@ package RPNCalculator.Commands;
 import RPNCalculator.Calculator.Calculator;
 import RPNCalculator.Calculator.Number;
 
+/**
+ * Base class for all binary operations.
+ * Binary operations (such as + - * /) consume 2 parameters and returns 1 output.
+ */
 public abstract class BinaryOperationCommand extends OperationCommand {
 
     abstract Number output(Number input1, Number input2);

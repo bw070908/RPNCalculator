@@ -4,6 +4,9 @@ import RPNCalculator.Calculator.Number;
 
 import java.math.BigDecimal;
 
+/**
+ * Command for division operation.
+ */
 public final class DivisionCommand extends BinaryOperationCommand {
     @Override
     Number output(Number input1, Number input2) {

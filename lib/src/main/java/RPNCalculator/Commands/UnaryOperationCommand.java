@@ -3,6 +3,10 @@ package RPNCalculator.Commands;
 import RPNCalculator.Calculator.Calculator;
 import RPNCalculator.Calculator.Number;
 
+/**
+ * Base class for unary operations.
+ * Unary operations consumer 1 parameter and return 1 output.
+ */
 public abstract class UnaryOperationCommand extends OperationCommand {
 
     abstract Number output(Number input);

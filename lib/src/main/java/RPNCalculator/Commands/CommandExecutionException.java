@@ -1,5 +1,8 @@
 package RPNCalculator.Commands;
 
+/**
+ * Custom exception class for runtime exceptions while executing commands.
+ */
 public class CommandExecutionException extends RuntimeException{
     public CommandExecutionException(String message) {
         super(message);

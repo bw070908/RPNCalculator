@@ -3,6 +3,9 @@ package RPNCalculator.Commands;
 import RPNCalculator.Calculator.Calculator;
 import RPNCalculator.Calculator.Number;
 
+/**
+ * Command for numeric inputs.
+ */
 public final class NumericCommand extends BaseCommand {
 
     private Number value;

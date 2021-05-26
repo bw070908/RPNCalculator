@@ -2,6 +2,10 @@ package RPNCalculator.Commands;
 
 import RPNCalculator.Calculator.Calculator;
 
+/**
+ * Base class for all commands.
+ * Handles basic interactions with Calculator class and exception handling.
+ */
 public abstract class BaseCommand implements Command {
 
     abstract void executeCommand(Calculator calculator);

@@ -2,6 +2,9 @@ package RPNCalculator.Commands;
 
 import RPNCalculator.Calculator.Calculator;
 
+/**
+ * Command for redo operation.
+ */
 public class RedoCommand extends OperationCommand {
     @Override
     int requiredNumberOfParameters() {
