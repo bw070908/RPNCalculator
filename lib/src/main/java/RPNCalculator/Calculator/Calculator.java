@@ -3,6 +3,11 @@ package RPNCalculator.Calculator;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * Calculator class encapsulates all the stateful components of RPNCalculator.
+ * It maintains a stack of numbers, and records all pops/pushes to the stack.
+ * Pop/pushes to the stack are tracked through Instructions, which can be undone/redone.
+ */
 public class Calculator {
 
     private Stack<Number> numbers;
@@ -17,17 +22,32 @@ public class Calculator {
         currentInstruction = new Instruction();
     }
 
+    /**
+     * Pop number from top of the stack.
+     * This action is recorded for undo/redo.
+     * @return Number popped from stack.
+     */
     public Number pop() {
         Number popped = numbers.pop();
         currentInstruction.recordPop(popped);
         return popped;
     }
 
+    /**
+     * Push number onto the stack.
+     * This action is recorded for undo/redo.
+     * @param n Number to push.
+     */
     public void push(Number n) {
         numbers.push(n);
         currentInstruction.recordPush(n);
     }
 
+    /**
+     * Commit saves all the pops/pushes into an Instruction.
+     * Instructions can be undone/redone.
+     * New instructions resets the redone stack, as it starts a new history chain.
+     */
     public void commit() {
         if (!currentInstruction.isEmpty()) {
             doneInstructions.add(currentInstruction);
@@ -36,11 +56,18 @@ public class Calculator {
         currentInstruction = new Instruction();
     }
 
+    /**
+     * Revert all the pop/pushes from the previous commit.
+     */
     public void cancel() {
         undoInstruction(currentInstruction);
         currentInstruction = new Instruction();
     }
 
+    /**
+     * Undo previous instruction.
+     * No action if there are no instructions to undo.
+     */
     public void undo() {
         if (doneInstructions.empty()) {
             return;
@@ -50,6 +77,10 @@ public class Calculator {
         undoneInstructions.push(instruction);
     }
 
+    /**
+     * Redo previous undone instruction.
+     * No action if there are no instructions to redo.
+     */
     public void redo() {
         if (undoneInstructions.empty()) {
             return;
@@ -59,10 +90,18 @@ public class Calculator {
         doneInstructions.push(instruction);
     }
 
+    /**
+     * Returns current size of the stack.
+     * @return Size of stack.
+     */
     public int size() {
         return numbers.size();
     }
 
+    /**
+     * Returns plain string representation of the current stack.
+     * @return Plain string representation of the current stack
+     */
     public String printStack() {
         return String.join(
                 " ",
