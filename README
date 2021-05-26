@@ -64,3 +64,10 @@ which allowed fast testing across many types of inputs.
 I've worked on teams that ranged from strict comments across all classes (like Redfin),
 to teams that believed clear code diminishes the need for comments (Google, Amazon).
 Not sure what your preference is, so I took the middle ground (some comments, but not strict Java doc).
+
+5. Use of inheritance
+Once again for typical Service code, I enforce avoidance of implementation inheritance.
+However, implementation inheritance was used for this package, because:
+a. The objects we are representing are mathematical and not prone to change due to business needs.
+b. The code is cleaner in the absence of a DI framework.
+Just wanted to note this is an explicit choice, not a result of not knowing how to build composition based applications.
